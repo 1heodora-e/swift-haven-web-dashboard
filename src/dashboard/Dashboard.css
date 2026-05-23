@@ -35,6 +35,38 @@
   gap: 10px;
 }
 
+.header-menu-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-right: 4px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-dark);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background var(--transition);
+}
+
+.header-menu-btn:hover {
+  background: var(--pink-light);
+  color: var(--pink);
+}
+
+.sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  border: none;
+  padding: 0;
+  background: rgba(26, 26, 46, 0.4);
+  cursor: pointer;
+}
+
 .header-brand-dot {
   width: 10px;
   height: 10px;
@@ -1353,27 +1385,41 @@
 
 @media (max-width: 900px) {
   :root {
-    --sidebar-width: 72px;
+    --sidebar-width: 0;
   }
 
-  .dashboard-sidebar {
-    padding: 16px 8px;
+  .sidebar-backdrop {
+    display: block;
+    z-index: 101;
   }
 
-  .sidebar-logo-tagline,
-  .sidebar-nav-item span,
-  .sidebar-divider {
+  .dashboard:not(.sidebar-open) .sidebar-backdrop {
     display: none;
   }
 
-  .sidebar-logo-title {
-    font-size: 11px;
-    text-align: center;
+  .header-menu-btn {
+    display: flex;
   }
 
-  .sidebar-nav-item {
-    justify-content: center;
-    padding: 12px;
+  .dashboard-header {
+    left: 0;
+    z-index: 103;
+  }
+
+  .dashboard-main {
+    margin-left: 0;
+  }
+
+  .dashboard-sidebar {
+    width: min(280px, 85vw);
+    transform: translateX(-100%);
+    transition: transform var(--transition);
+    z-index: 102;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.12);
+  }
+
+  .dashboard.sidebar-open .dashboard-sidebar {
+    transform: translateX(0);
   }
 
   .header-user-label {
@@ -1387,7 +1433,52 @@
 
 @media (max-width: 640px) {
   .stats-row {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .stat-card {
+    padding: 14px;
+  }
+
+  .stat-card-icon-wrap {
+    top: 14px;
+    right: 14px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .stat-card-icon-wrap svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .stat-card-label {
+    font-size: 10px;
+    line-height: 1.3;
+    padding-right: 28px;
+  }
+
+  .stat-card-value {
+    font-size: 22px;
+  }
+
+  .stat-card-subtitle {
+    font-size: 10px;
+    margin-bottom: 8px;
+  }
+
+  .stat-card-trend {
+    font-size: 10px;
+  }
+
+  .stat-card-trend svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .stat-card-live {
+    font-size: 10px;
   }
 
   .content-header {

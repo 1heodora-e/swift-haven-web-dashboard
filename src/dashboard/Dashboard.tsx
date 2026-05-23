@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Header } from './components/Header';
 import { Sidebar } from './components/Sidebar';
 import { AlertBanner } from './components/AlertBanner';
@@ -17,6 +17,29 @@ import './editorial-theme.css';
 
 function DashboardShell() {
   const { activePage, toasts } = useDashboard();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  useEffect(() => {
+    setSidebarOpen(false);
+  }, [activePage]);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 900px)');
+    const onChange = () => {
+      if (!mq.matches) setSidebarOpen(false);
+    };
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
+
+  useEffect(() => {
+    if (!sidebarOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [sidebarOpen]);
 
   const renderPage = () => {
     switch (activePage) {
@@ -36,9 +59,20 @@ function DashboardShell() {
   };
 
   return (
-    <div className="dashboard">
-      <Sidebar />
-      <Header />
+    <div className={`dashboard${sidebarOpen ? ' sidebar-open' : ''}`}>
+      {sidebarOpen && (
+        <button
+          type="button"
+          className="sidebar-backdrop"
+          aria-label="Close menu"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+      <Sidebar onNavigate={() => setSidebarOpen(false)} />
+      <Header
+        sidebarOpen={sidebarOpen}
+        onMenuToggle={() => setSidebarOpen((open) => !open)}
+      />
       <main className="dashboard-main">
         <div className="dashboard-content">
           <AlertBanner />

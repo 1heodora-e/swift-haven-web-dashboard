@@ -1,8 +1,13 @@
-import { Bell } from 'lucide-react';
+import { Bell, Menu, X } from 'lucide-react';
 import { useDashboard } from '../context/DashboardContext';
 import '../Dashboard.css';
 
-export function Header() {
+interface HeaderProps {
+  sidebarOpen?: boolean;
+  onMenuToggle?: () => void;
+}
+
+export function Header({ sidebarOpen = false, onMenuToggle }: HeaderProps) {
   const { openModal, setActivePage, showToast, lastSynced } = useDashboard();
 
   const syncedLabel = lastSynced.toLocaleString('en-GB', {
@@ -13,6 +18,15 @@ export function Header() {
   return (
     <header className="dashboard-header">
       <div className="header-brand">
+        <button
+          type="button"
+          className="header-menu-btn"
+          aria-label={sidebarOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={sidebarOpen}
+          onClick={onMenuToggle}
+        >
+          {sidebarOpen ? <X size={22} /> : <Menu size={22} />}
+        </button>
         <span className="header-brand-dot" aria-hidden />
         <span className="header-brand-title gradient-text font-serif">Haven Dashboard</span>
       </div>

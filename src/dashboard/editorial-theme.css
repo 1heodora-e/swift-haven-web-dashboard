@@ -5,7 +5,7 @@
 .content-header-text h1,
 .modal-title,
 .tour-title {
-  font-family: 'Fraunces', 'Georgia', serif;
+  font-family: 'Playfair Display', 'Georgia', serif;
   font-weight: 700;
   letter-spacing: -0.02em;
 }
@@ -18,7 +18,7 @@ body,
 }
 
 .sidebar-logo-title {
-  font-family: 'Fraunces', serif;
+  font-family: 'Playfair Display', serif;
 }
 
 /* Map */
@@ -163,7 +163,7 @@ body,
 
 .investment-value {
   display: block;
-  font-family: 'Fraunces', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 1.75rem;
   font-weight: 700;
   color: #be185d;

@@ -18,8 +18,17 @@ const navItems: { id: PageId; label: string; icon: typeof LayoutDashboard }[] = 
   { id: 'settings', label: 'Settings', icon: Settings },
 ];
 
-export function Sidebar() {
+interface SidebarProps {
+  onNavigate?: () => void;
+}
+
+export function Sidebar({ onNavigate }: SidebarProps) {
   const { activePage, setActivePage } = useDashboard();
+
+  const goTo = (id: PageId) => {
+    setActivePage(id);
+    onNavigate?.();
+  };
 
   return (
     <aside className="dashboard-sidebar">
@@ -37,7 +46,7 @@ export function Sidebar() {
               type="button"
               className={`sidebar-nav-item${active ? ' active' : ''}`}
               aria-current={active ? 'page' : undefined}
-              onClick={() => setActivePage(id)}
+              onClick={() => goTo(id)}
             >
               <Icon />
               <span>{label}</span>
