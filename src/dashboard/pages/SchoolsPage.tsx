@@ -1,4 +1,5 @@
 import { Plus } from 'lucide-react';
+import { RestockIcon } from '../components/shared/RestockIcon';
 import { PageHeader } from '../components/shared/PageHeader';
 import { InventoryRing } from '../components/shared/InventoryRing';
 import { useDashboard } from '../context/DashboardContext';
@@ -33,6 +34,9 @@ export function SchoolsPage() {
               <h2 className="school-detail-name">{school.name}</h2>
               <p className="school-detail-meta">
                 {school.district} · {school.address}
+              </p>
+              <p className="school-dispenser-summary">
+                {school.dispensers} smart dispenser{school.dispensers === 1 ? '' : 's'} on campus
               </p>
               <div className="school-mini-stats">
                 <div className="mini-stat">
@@ -92,6 +96,7 @@ export function SchoolsPage() {
                   className="btn-gradient btn-sm"
                   onClick={() => requestRestockForSchool(school.name)}
                 >
+                  <RestockIcon size={16} />
                   Request Restock
                 </button>
               </div>

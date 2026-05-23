@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Package, Users, MapPin, Heart } from 'lucide-react';
+import { Package, Users, MapPin, Heart, Radio } from 'lucide-react';
 import { useDashboard } from '../context/DashboardContext';
+import { getSchoolDispensers } from '../lib/dispensers';
 import { ModalShell } from './shared/Modal';
 
 export function DashboardModals() {
@@ -19,25 +20,58 @@ export function DashboardModals() {
   if (modal.type === 'school-detail' && modal.schoolId) {
     const school = getSchool(modal.schoolId);
     if (!school) return null;
+    const units = getSchoolDispensers(school);
     return (
       <ModalShell title={school.name} wide>
         <div className="modal-detail-grid">
           <p className="modal-lead">
-            <MapPin size={16} /> {school.district} · {school.address}
+            <MapPin size={16} aria-hidden /> {school.district} · {school.address}
           </p>
           <div className="modal-stat-pills">
             <span className="pill-stat">
-              <Users size={14} /> {school.girls} girls
+              <Users size={14} aria-hidden /> {school.girls} girls
             </span>
             <span className="pill-stat">
-              <Package size={14} /> {school.padsTerm} pads this term
+              <Package size={14} aria-hidden /> {school.padsTerm.toLocaleString()} pads this term
             </span>
             <span className="pill-stat">
-              <Heart size={14} /> {school.sessions} Haven Circles sessions
+              <Radio size={14} aria-hidden /> {school.dispensers} smart dispenser
+              {school.dispensers === 1 ? '' : 's'}
+            </span>
+            <span className="pill-stat">
+              <Heart size={14} aria-hidden /> {school.sessions} Haven Circles sessions
             </span>
           </div>
+
+          <section className="modal-section">
+            <h3 className="modal-section-title">Smart dispensers at this school</h3>
+            <p className="modal-section-desc">
+              Each unit is connected for live stock monitoring and restock alerts.
+            </p>
+            <ul className="dispenser-detail-list">
+              {units.map((unit) => (
+                <li key={unit.id} className="dispenser-detail-card">
+                  <div className="dispenser-detail-top">
+                    <span className="dispenser-detail-id">{unit.id}</span>
+                    <span className={`badge badge-${unit.status}`}>{unit.status}</span>
+                  </div>
+                  <p className="dispenser-detail-location">{unit.location}</p>
+                  <div className="dispenser-detail-bar-wrap">
+                    <div
+                      className={`dispenser-detail-bar bar-${unit.status}`}
+                      style={{ width: `${unit.fillPercent}%` }}
+                    />
+                  </div>
+                  <p className="dispenser-detail-fill">
+                    <strong>{unit.fillPercent}%</strong> fill level
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </section>
+
           <p className="modal-copy">
-            Dispenser fill level is at <strong>{school.fillPercent}%</strong>. Last restocked{' '}
+            School average fill is <strong>{school.fillPercent}%</strong>. Last restocked{' '}
             {school.lastRestocked.toLowerCase()}. Next restock {school.nextRestock.toLowerCase()}.
           </p>
           <p className="modal-copy">

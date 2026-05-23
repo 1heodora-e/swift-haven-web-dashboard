@@ -30,12 +30,12 @@ export function ModalShell({ title, children, footer, wide }: ModalProps) {
         aria-labelledby="modal-title"
       >
         <div className="modal-header">
-          <h2 id="modal-title" className="modal-title">
-            {title}
-          </h2>
           <button type="button" className="modal-close" onClick={closeModal} aria-label="Close">
             <X size={20} />
           </button>
+          <h2 id="modal-title" className="modal-title">
+            {title}
+          </h2>
         </div>
         <div className="modal-body">{children}</div>
         {footer && <div className="modal-footer">{footer}</div>}

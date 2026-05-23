@@ -1,5 +1,6 @@
 import { useState, useEffect, type FormEvent } from 'react';
 import { Check } from 'lucide-react';
+import { RestockIcon } from '../components/shared/RestockIcon';
 import { PageHeader } from '../components/shared/PageHeader';
 import { useDashboard } from '../context/DashboardContext';
 
@@ -233,6 +234,7 @@ export function InventoryPage() {
               />
             </div>
             <button type="submit" className="btn-gradient btn-full">
+              <RestockIcon size={18} />
               Submit restock request
             </button>
           </form>

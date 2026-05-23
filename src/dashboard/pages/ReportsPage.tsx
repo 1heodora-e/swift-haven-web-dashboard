@@ -45,8 +45,6 @@ export function ReportsPage() {
   const [genState, setGenState] = useState<'idle' | 'loading' | 'success'>('idle');
   const [lastReportTitle, setLastReportTitle] = useState('');
 
-  const allSchoolNames = schools.map((s) => s.name);
-
   const toggleSchool = (name: string) => {
     setSelectedSchools((prev) =>
       prev.includes(name) ? prev.filter((s) => s !== name) : [...prev, name],
@@ -104,10 +102,11 @@ export function ReportsPage() {
             void handleGenerate();
           }}
         >
-          <div className="form-field">
+          <div className="form-field form-field--compact">
             <label htmlFor="report-period">Report period</label>
             <select
               id="report-period"
+              className="select-compact"
               value={period}
               onChange={(e) => setPeriod(e.target.value)}
             >
@@ -119,16 +118,28 @@ export function ReportsPage() {
 
           <div className="form-field">
             <span className="field-label">School selection</span>
-            <div className="checkbox-group">
-              {allSchoolNames.map((name) => (
-                <label key={name} className="checkbox-item">
-                  <input
-                    type="checkbox"
-                    checked={selectedSchools.includes(name)}
-                    onChange={() => toggleSchool(name)}
-                  />
-                  <span>{name}</span>
-                </label>
+            <div className="school-select-list">
+              {schools.map((school) => (
+                <div key={school.id} className="school-select-row">
+                  <label className="checkbox-item">
+                    <input
+                      type="checkbox"
+                      checked={selectedSchools.includes(school.name)}
+                      onChange={() => toggleSchool(school.name)}
+                    />
+                    <span className="school-select-name">{school.name}</span>
+                  </label>
+                  <button
+                    type="button"
+                    className="btn-text-link"
+                    onClick={() =>
+                      openModal({ type: 'school-detail', schoolId: school.id })
+                    }
+                  >
+                    <Eye size={14} />
+                    View details
+                  </button>
+                </div>
               ))}
             </div>
           </div>

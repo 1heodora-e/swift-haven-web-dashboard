@@ -1,4 +1,5 @@
 import { useDashboard } from '../context/DashboardContext';
+import { RestockIcon } from './shared/RestockIcon';
 import '../Dashboard.css';
 
 function StatusBadge({
@@ -60,6 +61,7 @@ export function SchoolTable() {
                       className="btn-restock btn-restock-gradient"
                       onClick={() => requestRestockForSchool(school.name)}
                     >
+                      <RestockIcon size={14} />
                       Request Restock
                     </button>
                   )}
