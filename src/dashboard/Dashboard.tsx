@@ -24,7 +24,7 @@ function DashboardShell() {
   }, [activePage]);
 
   useEffect(() => {
-    const mq = window.matchMedia('(max-width: 900px)');
+    const mq = window.matchMedia('(max-width: 1400px)');
     const onChange = () => {
       if (!mq.matches) setSidebarOpen(false);
     };

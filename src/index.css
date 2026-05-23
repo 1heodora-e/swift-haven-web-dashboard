@@ -1,13 +1,20 @@
 :root {
   --font-serif: 'Playfair Display', 'Georgia', serif;
+  --font-ui: 'DM Sans', system-ui, sans-serif;
+  --font-family: var(--font-ui);
+  /* Swift Haven brand pink */
   --pink: #ec4899;
+  --pink-mid: #db2777;
   --pink-dark: #be185d;
-  --pink-light: #fdf2f8;
+  --pink-light: #fce7f3;
+  --pink-soft: #fdf2f8;
+  --pink-rgb: 236, 72, 153;
+  --canvas: #fdf2f8;
   --white: #ffffff;
-  --text-dark: #1a1a2e;
-  --success: #16a34a;
-  --warning: #d97706;
-  --danger: #dc2626;
+  --text-dark: #1c1917;
+  --success: #15803d;
+  --warning: #b45309;
+  --danger: #b91c1c;
   --border: #f5d0e3;
   --bg-main: #fdf2f8;
   --text-muted: #8b7a85;
@@ -17,10 +24,13 @@
   --alert-border: #fde68a;
   --alert-text: #92400e;
   --header-height: 64px;
-  --sidebar-width: 240px;
+  --sidebar-width: 200px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 16px;
   --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
-  --shadow-card: 0 6px 24px rgba(251, 207, 232, 0.4);
-  --shadow-button: 0 4px 14px rgba(236, 72, 153, 0.25);
+  --shadow-card: 0 1px 2px rgba(28, 25, 23, 0.04), 0 4px 16px rgba(28, 25, 23, 0.06);
+  --shadow-button: 0 2px 8px rgba(var(--pink-rgb), 0.22);
 }
 
 *,
@@ -31,6 +41,10 @@
   padding: 0;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 html,
 body,
 #root {
@@ -38,17 +52,27 @@ body,
 }
 
 body {
-  font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
+  font-family: var(--font-ui);
   font-size: 14px;
   font-weight: 400;
   color: var(--text-dark);
-  background: #fff5f9;
+  background: var(--canvas);
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
-button {
+button,
+input,
+select,
+textarea {
   font-family: inherit;
   cursor: pointer;
+}
+
+input,
+select,
+textarea {
+  cursor: text;
 }
 
 @keyframes pulse-live {
@@ -112,7 +136,8 @@ button {
 }
 
 .live-dot-white {
-  background: var(--white);
+  background: var(--success);
+  box-shadow: 0 0 0 2px rgba(21, 128, 61, 0.2);
 }
 
 .page-fade {
