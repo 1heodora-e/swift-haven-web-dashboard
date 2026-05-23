@@ -1,0 +1,337 @@
+/* Editorial typography — Dama-inspired, Swift Haven pink */
+
+.font-serif,
+.chart-card-title.font-serif,
+.content-header-text h1,
+.modal-title,
+.tour-title {
+  font-family: 'Fraunces', 'Georgia', serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+body,
+.dashboard,
+.form-field input,
+.school-table {
+  font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
+}
+
+.sidebar-logo-title {
+  font-family: 'Fraunces', serif;
+}
+
+/* Map */
+.map-wrap {
+  border-radius: 20px;
+  overflow: hidden;
+  height: 320px;
+  box-shadow: inset 0 0 0 1px rgba(236, 72, 153, 0.08);
+}
+
+.kigali-map {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  border-radius: 20px;
+}
+
+.map-placeholder {
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  background: #fdf2f8;
+  border-radius: 20px;
+}
+
+/* Live activity */
+.live-activity-card {
+  margin-bottom: 24px;
+}
+
+.live-activity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.live-pulse-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: #f0fdf4;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #16a34a;
+  flex-shrink: 0;
+}
+
+.activity-feed {
+  list-style: none;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.activity-item {
+  display: flex;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(252, 231, 243, 0.8);
+  animation: activity-in 0.4s ease;
+}
+
+.activity-item:last-child {
+  border-bottom: none;
+}
+
+.activity-icon {
+  color: #ec4899;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.activity-body p {
+  font-size: 13px;
+  color: var(--text-dark);
+  margin-bottom: 2px;
+}
+
+.activity-body time {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.activity-alert .activity-icon {
+  color: #d97706;
+}
+
+@keyframes activity-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Investment slider */
+.investment-slider-wrap {
+  margin-bottom: 24px;
+}
+
+.investment-slider-wrap label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 12px;
+  color: var(--text-muted);
+}
+
+.investment-range {
+  width: 100%;
+  height: 8px;
+  accent-color: #ec4899;
+  border-radius: 999px;
+}
+
+.investment-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+.investment-results {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.investment-stat {
+  text-align: center;
+  padding: 20px 12px;
+  background: linear-gradient(180deg, #fdf2f8, #fff);
+  border-radius: 20px;
+}
+
+.investment-value {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #be185d;
+  margin-bottom: 4px;
+}
+
+.investment-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.investment-footnote {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 16px;
+  font-style: italic;
+}
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+/* Pitch tour */
+.sidebar-tour-slot {
+  margin-top: auto;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.btn-pitch-tour {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #ec4899, #be185d);
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-pitch-tour:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(236, 72, 153, 0.35);
+}
+
+/* Tour panel — anchored in sidebar, replaces Start pitch tour button */
+.tour-card-sidebar {
+  position: relative;
+  width: 100%;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px 14px 14px;
+  border: 2px solid #fce7f3;
+  box-shadow:
+    0 12px 32px rgba(236, 72, 153, 0.15),
+    0 2px 8px rgba(0, 0, 0, 0.04);
+  animation: tour-slide-up 0.25s ease;
+}
+
+@keyframes tour-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tour-card-sidebar .tour-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #fdf2f8;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+.tour-card-sidebar .tour-step-count {
+  display: block;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #ec4899;
+  font-weight: 600;
+  margin-bottom: 6px;
+  padding-right: 28px;
+}
+
+.tour-card-sidebar .tour-title {
+  font-size: 1.05rem;
+  margin: 0 0 8px;
+  color: var(--text-dark);
+  line-height: 1.25;
+  padding-right: 20px;
+}
+
+.tour-card-sidebar .tour-body {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.tour-card-sidebar .tour-hint {
+  font-size: 11px;
+  color: #ec4899;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.tour-actions-stacked {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.btn-tour-sm {
+  width: 100%;
+  justify-content: center;
+  padding: 9px 14px !important;
+  font-size: 12px !important;
+}
+
+.tour-spotlight {
+  position: relative;
+  z-index: 350 !important;
+  outline: 3px solid #ec4899 !important;
+  outline-offset: 6px;
+  box-shadow:
+    0 0 0 8px rgba(236, 72, 153, 0.12),
+    0 12px 40px rgba(236, 72, 153, 0.2) !important;
+  border-radius: 20px;
+  scroll-margin: 100px;
+  transition: outline 0.25s ease, box-shadow 0.25s ease;
+}
+
+.header-sync {
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+@media (max-width: 1100px) {
+  .overview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .investment-results {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,119 @@
+:root {
+  --pink: #ec4899;
+  --pink-dark: #be185d;
+  --pink-light: #fdf2f8;
+  --white: #ffffff;
+  --text-dark: #1a1a2e;
+  --success: #16a34a;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --border: #f5d0e3;
+  --bg-main: #fdf2f8;
+  --text-muted: #8b7a85;
+  --text-grey: #b09aa8;
+  --grid-light: #fce7f3;
+  --alert-bg: #fffbeb;
+  --alert-border: #fde68a;
+  --alert-text: #92400e;
+  --header-height: 64px;
+  --sidebar-width: 240px;
+  --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --shadow-card: 0 6px 24px rgba(251, 207, 232, 0.4);
+  --shadow-button: 0 4px 14px rgba(236, 72, 153, 0.25);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-dark);
+  background: #fff5f9;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+@keyframes pulse-live {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0.65;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes card-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes toast-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(20px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+.live-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--success);
+  animation: pulse-live 2s ease-in-out infinite;
+}
+
+.live-dot-white {
+  background: var(--white);
+}
+
+.page-fade {
+  animation: page-fade-in 220ms ease forwards;
+}
